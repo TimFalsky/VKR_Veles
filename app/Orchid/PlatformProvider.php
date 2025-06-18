@@ -37,25 +37,32 @@ class PlatformProvider extends OrchidServiceProvider
             Menu::make('Заказ-наряд')
                 ->icon('bs.card-checklist')
                 ->title('Навигация')
-                ->route('platform.main'),
+                ->route('platform.main')
+                ->permission('order'),
             Menu::make('Реестр заказов')
                 ->icon('bs.card-checklist')
-                ->route('platform.reestr'),
+                ->route('platform.reestr')
+                ->permission('reestr'),
             Menu::make('Услуги')
                 ->icon('bs.boxes')
-                ->route('platform.services'),
+                ->route('platform.services')
+                ->permission('services'),
             Menu::make('Автомобили')
                 ->icon('bs.car-front-fill')
-                ->route('platform.cars'),
+                ->route('platform.cars')
+                ->permission('cars'),
             Menu::make('Справочник работ')
                 ->icon('bs.wrench')
-                ->route('platform.reference-operations'),
+                ->route('platform.reference-operations')
+                ->permission('ref-operations'),
             Menu::make('Работы')
                 ->icon('bs.wrench')
-                ->route('platform.operations'),
+                ->route('platform.operations')
+                ->permission('operations'),
             Menu::make('Детали')
                 ->icon('bs.tools')
                 ->route('platform.details')
+                ->permission('details')
                 ->divider(),
 
             Menu::make('Пользователи')
