@@ -38,6 +38,12 @@ return [
             'report' => false,
         ],
 
+        'excel' => [
+            'driver' => 'local',
+            'root' => storage_path('app/excel_templates'),
+            'throw' => false,
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
