@@ -2,10 +2,25 @@
 
 namespace App\Orchid\Screens;
 
+use App\Models\Car;
+use App\Models\Order;
+use App\Orchid\Layouts\OrderListener;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Orchid\Screen\Fields\Relation;
 use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Layout;
 
 class OrderScreen extends Screen
 {
+    public function permission(): ?iterable
+    {
+        return [
+            'order',
+        ];
+    }
+
     /**
      * Fetch data to be displayed on the screen.
      *
@@ -13,7 +28,10 @@ class OrderScreen extends Screen
      */
     public function query(): iterable
     {
-        return [];
+        return [
+            'car' => Car::query()->first(),
+            'services' => collect(),
+        ];
     }
 
     /**
@@ -23,7 +41,7 @@ class OrderScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'OrderScreen';
+        return 'Заказ-наряд';
     }
 
     /**
@@ -43,6 +61,24 @@ class OrderScreen extends Screen
      */
     public function layout(): iterable
     {
-        return [];
+        return [
+            OrderListener::class
+        ];
+    }
+
+    public function createOrder(Request $request)
+    {
+        $data = $request->all();
+        $data['order']['uuid'] = Str::uuid()->toString();
+        DB::transaction(function () use ($data) {
+            $order = new Order();
+            $order->fill($data['order']);
+            $order->user()->associate(auth()->user());
+            $order->save();
+
+            $order->services()->sync($data['order']['services']);
+        });
+
+        return redirect()->route('platform.main');
     }
 }
