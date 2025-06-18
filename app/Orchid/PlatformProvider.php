@@ -34,61 +34,40 @@ class PlatformProvider extends OrchidServiceProvider
     public function menu(): array
     {
         return [
-            Menu::make('Get Started')
-                ->icon('bs.book')
-                ->title('Navigation')
-                ->route(config('platform.index')),
-
-            Menu::make('Sample Screen')
-                ->icon('bs.collection')
-                ->route('platform.example')
-                ->badge(fn () => 6),
-
-            Menu::make('Form Elements')
-                ->icon('bs.card-list')
-                ->route('platform.example.fields')
-                ->active('*/examples/form/*'),
-
-            Menu::make('Layouts Overview')
-                ->icon('bs.window-sidebar')
-                ->route('platform.example.layouts'),
-
-            Menu::make('Grid System')
-                ->icon('bs.columns-gap')
-                ->route('platform.example.grid'),
-
-            Menu::make('Charts')
-                ->icon('bs.bar-chart')
-                ->route('platform.example.charts'),
-
-            Menu::make('Cards')
-                ->icon('bs.card-text')
-                ->route('platform.example.cards')
+            Menu::make('Заказ-наряд')
+                ->icon('bs.card-checklist')
+                ->title('Навигация')
+                ->route('platform.main'),
+            Menu::make('Реестр заказов')
+                ->icon('bs.card-checklist')
+                ->route('platform.reestr'),
+            Menu::make('Услуги')
+                ->icon('bs.boxes')
+                ->route('platform.services'),
+            Menu::make('Автомобили')
+                ->icon('bs.car-front-fill')
+                ->route('platform.cars'),
+            Menu::make('Справочник работ')
+                ->icon('bs.wrench')
+                ->route('platform.reference-operations'),
+            Menu::make('Работы')
+                ->icon('bs.wrench')
+                ->route('platform.operations'),
+            Menu::make('Детали')
+                ->icon('bs.tools')
+                ->route('platform.details')
                 ->divider(),
 
-            Menu::make(__('Users'))
+            Menu::make('Пользователи')
                 ->icon('bs.people')
                 ->route('platform.systems.users')
                 ->permission('platform.systems.users')
-                ->title(__('Access Controls')),
+                ->title('Управление доступом'),
 
-            Menu::make(__('Roles'))
+            Menu::make('Роли')
                 ->icon('bs.shield')
                 ->route('platform.systems.roles')
-                ->permission('platform.systems.roles')
-                ->divider(),
-
-            Menu::make('Documentation')
-                ->title('Docs')
-                ->icon('bs.box-arrow-up-right')
-                ->url('https://orchid.software/en/docs')
-                ->target('_blank'),
-
-            Menu::make('Changelog')
-                ->icon('bs.box-arrow-up-right')
-                ->url('https://github.com/orchidsoftware/platform/blob/master/CHANGELOG.md')
-                ->target('_blank')
-                ->badge(fn () => Dashboard::version(), Color::DARK),
+                ->permission('platform.systems.roles'),
         ];
     }
 
