@@ -107,7 +107,7 @@ class DetailScreen extends Screen
             Layout::table('details', [
                 TD::make('id')->sort(),
                 TD::make('name', 'Наименование детали'),
-                TD::make('article', 'Артикль'),
+                TD::make('article', 'Артикул'),
                 TD::make('type_units', 'Ед.изм.'),
                 TD::make('price', 'Цена'),
                 TD::make('car', 'Машина')

@@ -69,7 +69,7 @@ class CarScreen extends Screen
         return [
             $this->generateModal(self::MODAL_NAME,[
                 Input::make('car.car_brand')
-                    ->title('Брэнд')
+                    ->title('Марка')
                     ->required(),
                 Input::make('car.car_model')
                     ->title('Модель')
@@ -78,7 +78,7 @@ class CarScreen extends Screen
 
             Layout::table('cars', [
                 TD::make('id')->sort(),
-                TD::make('car_brand', 'Брэнд')->filter(),
+                TD::make('car_brand', 'Марка')->filter(),
                 TD::make('car_model', 'Модель')->filter(),
                 TD::make('created_at', 'Дата создания'),
                 TD::make('Действия')

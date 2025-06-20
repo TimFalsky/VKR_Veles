@@ -97,7 +97,7 @@ class OperationScreen extends Screen
             Layout::table('operations', [
                 TD::make('id', '№')->sort(),
                 TD::make('refOperation.name', 'Название операции'),
-                TD::make('index', 'Коэффициент')->sort(),
+                TD::make('index', 'Кол. работ')->sort(),
                 TD::make('car', 'Машина')
                     ->render(function (Operation $operation) {
                         return "{$operation->car->car_brand}<br/>{$operation->car->car_model}";
